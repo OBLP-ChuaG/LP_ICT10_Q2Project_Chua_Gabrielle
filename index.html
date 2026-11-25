@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Q2 PROJECT</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Poppins:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    /* From Google: spongeBob font */
+    @import url('https://fonts.cdnfonts.com/css/spongeboy-me-bob');
+
+    /* From Google */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* From Google: CSS variables */
+    :root {
+      --blue-banner: #2f9be3;
+      --yellow-border: #fff078;
+      --purple-card: #c8bbf7;
+      --cream-card: #fbf8ef;
+      --text-dark: #1b1d26;
+      --sky-gradient: linear-gradient(180deg, #ffffff 0%, #eef7ff 38%, #9fd4f7 100%);
+      --shadow: 0 12px 26px rgba(47, 86, 130, 0.14);
+      --radius: 22px;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: "Poppins", sans-serif;
+      background: var(--sky-gradient);
+      color: var(--text-dark);
+      line-height: 1.5;
+      cursor: none;
+      overflow-x: hidden;
+    }
+
+    /* From Google */
+    .jellyfish-cursor {
+      position: fixed;
+      width: 55px;
+      height: 55px;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.07s ease-out;
+    }
+
+    .jellyfish-cursor img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 3px 5px rgba(0,0,0,0.25));
+    }
+
+    /* From Google */
+    .bubble {
+      position: fixed;
+      bottom: -80px;
+      background: rgba(255, 255, 255, 0.4);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 50; 
+      box-shadow: inset 0 0 10px rgba(255,255,255,0.7);
+      animation: rise linear infinite;
+    }
+
+    @keyframes rise {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.75;
+      }
+      100% {
+        transform: translateY(-120vh) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    .top-banner {
+      background-color: var(--blue-banner);
+      color: #ffffff;
+      padding: 14px 24px;
+      font-family: "Spongeboy Me Bob", sans-serif;
+      font-size: 1.35rem;
+      letter-spacing: 0.8px;
+      border-bottom: 5px solid var(--yellow-border);
+      position: relative;
+      z-index: 10;
+    }
+
+    .showcase-container {
+      max-width: 540px;
+      margin: 44px auto 72px;
+      padding: 0 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 96px;
+      position: relative;
+      z-index: 5;
+    }
+
+    .creator-card {
+      background-color: var(--purple-card);
+      border-radius: var(--radius);
+      padding: 26px 28px 22px;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease;
+    }
+
+    .creator-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .creator-heading {
+      text-align: center;
+      font-family: "Spongeboy Me Bob", sans-serif;
+      font-size: 1.65rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-dark);
+      margin-bottom: 18px;
+    }
+
+    .creator-body {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .avatar-frame {
+      flex: 0 0 135px;
+      height: 158px;
+      background-color: #fbf8ee;
+      border-radius: 6px;
+      padding: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .avatar-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 4px;
+      transition: transform 0.4s ease;
+    }
+
+    .avatar-frame:hover img {
+      transform: scale(1.05);
+    }
+
+    .creator-info {
+      flex: 1;
+      text-align: center;
+    }
+
+    .creator-name,
+    .creator-section {
+      font-family: "Spongeboy Me Bob", sans-serif;
+      font-size: 1.05rem;
+      color: var(--text-dark);
+    }
+
+    .creator-section {
+      margin-top: 4px;
+      font-size: 0.98rem;
+    }
+
+    .creator-bio {
+      font-family: "Spongeboy Me Bob", sans-serif;
+      font-size: 0.85rem;
+      color: #ffffff;
+      text-shadow: 1px 1px 0px rgba(27, 29, 38, 0.35);
+      margin-top: 8px;
+    }
+
+    .creator-quote {
+      font-family: "Spongeboy Me Bob", sans-serif;
+      font-size: 0.82rem;
+      color: #f48fb1;
+      text-shadow: 1px 1px 0px rgba(27, 29, 38, 0.28);
+      margin-top: 8px;
+    }
+
+    .creator-signature {
+      margin-top: 14px;
+      text-align: center;
+      font-family: "Cedarville Cursive", cursive;
+      font-size: 1.65rem;
+      color: var(--text-dark);
+    }
+
+    .websites-card {
+      background-color: var(--cream-card);
+      border-radius: 24px;
+      padding: 26px 24px 32px;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .websites-heading {
+      font-family: "Spongeboy Me Bob", sans-serif;
+      font-size: 1.9rem;
+      color: #4c9be8;
+      text-shadow: 2px 2px 0px #1f4e78;
+      margin-bottom: 22px;
+    }
+
+    .site-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      align-items: end;
+    }
+
+    /* From Google: hover effect */
+    .site-link {
+      text-decoration: none;
+      color: var(--text-dark);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 6px;
+      border-radius: 14px;
+      transition: transform 0.25s ease, background-color 0.25s ease;
+    }
+
+    .site-link:hover,
+    .site-link:focus {
+      transform: translateY(-6px);
+      background-color: rgba(76, 155, 232, 0.1);
+      outline: none;
+    }
+
+    .site-link img {
+      width: 82px;
+      height: 82px;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+    }
+
+    .site-link:hover img {
+      transform: scale(1.08);
+    }
+
+    .site-label {
+      font-family: "Spongeboy Me Bob", sans-serif;
+      font-size: 1.05rem;
+      letter-spacing: 0.6px;
+    }
+
+    /* From Google */
+    @media (max-width: 480px) {
+      .creator-body {
+        flex-direction: column;
+      }
+
+      .site-grid {
+        gap: 10px;
+      }
+
+      .site-link img {
+        width: 68px;
+        height: 68px;
+      }
+
+      .creator-heading {
+        font-size: 1.4rem;
+      }
+
+      .websites-heading {
+        font-size: 1.6rem;
+      }
+
+      .jellyfish-cursor {
+        width: 45px;
+        height: 45px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="jellyfish-cursor" id="jellyCursor">
+    <img src="jellyfish.png" alt="jellyfish cursor" />
+  </div>
+
+  <header class="top-banner">Student Showcase 2026</header>
+
+  <main class="showcase-container">
+    <section class="creator-card" aria-labelledby="creator-title">
+      <h1 id="creator-title" class="creator-heading">Meet the Creator</h1>
+
+      <div class="creator-body">
+        <div class="avatar-frame">
+          <img
+            src="https://i.pinimg.com/736x/b9/f0/df/b9f0df73e747386493c39dde3a882b27.jpg"
+            alt="SpongeBob SquarePants wearing glasses"
+          />
+        </div>
+
+        <div class="creator-info">
+          <p class="creator-name">Gabrielle Denise C. Chua</p>
+          <p class="creator-section">10 EMERALD</p>
+          <p class="creator-bio">i like video editing, singing, k-pop, writing.</p>
+          <p class="creator-quote">"my butt hurts" - gab c.</p>
+        </div>
+      </div>
+
+      <p class="creator-signature">Gabby Chua (Squarepants)</p>
+    </section>
+
+    <section class="websites-card" aria-labelledby="websites-title">
+      <h2 id="websites-title" class="websites-heading">Websites</h2>
+
+      <div class="site-grid">
+        <a
+          class="site-link"
+          href="https://oblp-chuag.github.io/LP_ICT10_Q2SkillsTest_Chua_Gabrielle/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img src="download.png" alt="Patrick's rock house" />
+          <span class="site-label">SKILLS TEST</span>
+        </a>
+
+        <a
+          class="site-link"
+          href="https://oblp-chuag.github.io/LP_ICT10_Q2Seatwork1_Chua_Gabrielle/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img src="download (1).png" alt="Squidward's house" />
+          <span class="site-label">SW</span>
+        </a>
+
+        <a
+          class="site-link"
+          href="https://oblp-chuag.github.io/LP_ICT9E_Q4Project_Group3/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img src="download (2).png" alt="SpongeBob's pineapple house" />
+          <span class="site-label">G9 PROJECT</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // ========== JELLYFISH CURSOR ========== FROM GOOGLE, SLIGHT HELP FROM AI
+    const jelly = document.getElementById('jellyCursor');
+
+    document.addEventListener('mousemove', (e) => {
+      jelly.style.left = e.clientX + 'px';
+      jelly.style.top = e.clientY + 'px';
+    });
+
+    document.addEventListener('mouseleave', () => {
+      jelly.style.opacity = '0';
+    });
+    document.addEventListener('mouseenter', () => {
+      jelly.style.opacity = '1';
+    });
+
+    function createBubble() {
+      const bubble = document.createElement('div');
+      bubble.classList.add('bubble');
+
+      const size = Math.random() * 35 + 14;
+      bubble.style.width = `${size}px`;
+      bubble.style.height = `${size}px`;
+      bubble.style.left = `${Math.random() * 100}vw`;
+
+      const duration = Math.random() * 9 + 8;
+      bubble.style.animationDuration = `${duration}s`;
+      bubble.style.animationDelay = `${Math.random() * 3}s`;
+
+      document.body.appendChild(bubble);
+
+      setTimeout(() => {
+        bubble.remove();
+      }, (duration + 3) * 1000);
+    }
+
+    setInterval(createBubble, 350);
+
+    for (let i = 0; i < 10; i++) {
+      setTimeout(createBubble, i * 250);
+    }
+  </script>
+</body>
+</html>
