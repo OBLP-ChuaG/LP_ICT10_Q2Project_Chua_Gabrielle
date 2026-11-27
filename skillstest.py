@@ -1,8 +1,8 @@
+from pyscript import document # type: ignore #type: ignore from Google
+from pyscript.ffi import create_proxy # type: ignore #type: ignore from Google
 
-from pyscript import document # type: ignore
-
-non_metals = { #this code is a dictionary
-   "H": ("Hydrogen", 1, 1.008),
+non_metals = {
+    "H": ("Hydrogen", 1, 1.008),
     "He": ("Helium", 2, 4.0026),
     "C": ("Carbon", 6, 12.011),
     "N": ("Nitrogen", 7, 14.007),
@@ -21,22 +21,44 @@ non_metals = { #this code is a dictionary
     "Rn": ("Radon", 86, 222),
 }
 
-def search_element(e):
-    document.getElementById('result').innerHTML = "  "
+def format_symbol(text):
+    cleaned = text.strip()
+    if not cleaned:
+        return ""
+    return cleaned[0].upper() + cleaned[1:].lower()
 
-    symbol = document.getElementById('element_input').value.strip().capitalize()
+def search_element(e=None):
+    result_section = document.getElementById("result_section")
+    result_box = document.getElementById("result")
+    result_section.style.display = "block"
 
-    # Using .get() - no if statement
+    raw_input = document.getElementById("element_input").value
+    symbol = format_symbol(raw_input)
+
     name, atomic_num, atomic_mass = non_metals.get(
         symbol,
-        ("Element does not exist in the non-metals list," "-", "-")
+        ("Element does not exist in the non-metals list.", "-", "-")
     )
 
-    document.getElementById('result').innerHTML = f"""
-    <b>Symbol:</b> {symbol}<br>
-    <b>Element:</b> {name} <br>
-    <b>Atomic Number:</b> {atomic_num}<br>
-    <b>Atomic Mass:</b> {atomic_mass}<br>
+    display_symbol = symbol if symbol else "None entered"
+
+    result_box.innerHTML = f"""
+        <div>Symbol: <span style="color: #7b8ec2;">{display_symbol}</span></div>
+        <div>Element: <span style="color: #7b8ec2;">{name}</span></div>
+        <div>Atomic Number: <span style="color: #7b8ec2;">{atomic_num}</span></div>
+        <div>Atomic Mass: <span style="color: #7b8ec2;">{atomic_mass}</span></div>
     """
 
-    #mostly got help from Google with the codes
+def on_enter(event):
+    if event.key == "Enter":
+        search_element(event)
+
+click_proxy = create_proxy(search_element)
+enter_proxy = create_proxy(on_enter)
+
+document.getElementById("check_btn").addEventListener("click", click_proxy)
+document.getElementById("element_input").addEventListener("keypress", enter_proxy)
+
+status_el = document.getElementById("py_status")
+if status_el:
+    status_el.style.display = "none"
