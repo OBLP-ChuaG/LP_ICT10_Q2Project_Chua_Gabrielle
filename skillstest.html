@@ -3,189 +3,188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Q2 SKILLS TEST</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <title>Non-Metal Elements</title>
+
+    <link rel="preconnect" href="https://fonts.cdnfonts.com" crossorigin>
+    <link rel="preconnect" href="https://pyscript.net" crossorigin>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <link rel="stylesheet" href="https://pyscript.net/releases/2024.11.1/core.css">
     <script type="module" src="https://pyscript.net/releases/2024.11.1/core.js"></script>
 
     <style>
+        @import url('https://fonts.cdnfonts.com/css/spongeboy-me-bob');
+
+        :root {
+            --bg-sage: #A9CBBF;
+            --card-cream: #FDF7CE;
+            --header-periwinkle: #8296CC;
+            --header-text: #D3EEE7;
+            --box-aqua: #CDEAE5;
+            --input-cream: #FDF7CE;
+            --border-periwinkle: #8296CC;
+            --text-slate: #4F638F;
+            --text-periwinkle: #7B8EC2;
+            --divider-tan: #C8C4A6;
+        }
+
+        * {
+            font-family: 'Spongeboy Me Bob', sans-serif;
+            letter-spacing: 0.03em;
+        }
+
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #2b26c7 0%, #4b3fe2 50%, #2b26c7 100%);
+            background-color: var(--bg-sage);
+            font-family: 'Spongeboy Me Bob', sans-serif;
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
             margin: 0;
+        }
+
+        .display-font {
+            font-family: 'Spongeboy Me Bob', sans-serif;
+            letter-spacing: 0.04em;
         }
 
         .main-card {
-            background-color: #ffffff;
-            width: 100%;
-            max-width: 720px;
-            border-radius: 14px;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+            background-color: var(--card-cream);
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(45, 65, 60, 0.12);
             overflow: hidden;
         }
 
-        .card-header-custom {
-            background-color: #0d6efd;
-            color: #ffffff;
-            text-align: center;
-            padding: 28px 20px;
-        }
-
-        .card-header-custom h1 {
-            font-size: 1.75rem;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-
-        .card-header-custom p {
-            font-size: 0.9rem;
-            margin: 0;
-            opacity: 0.95;
-        }
-
-        .card-body-custom {
-            padding: 24px 28px;
+        .card-header {
+            background-color: var(--header-periwinkle);
+            color: var(--header-text);
         }
 
         .instructions-box {
-            background-color: #d2f4fa;
-            border: 1px solid #a6e9f5;
-            color: #084258;
-            border-radius: 8px;
-            padding: 14px 18px;
-            font-size: 0.88rem;
-            margin-bottom: 20px;
+            background-color: var(--box-aqua);
+            border: 1.5px solid var(--border-periwinkle);
+            border-radius: 6px;
         }
 
-        .instructions-box strong {
-            display: block;
-            margin-bottom: 2px;
-            font-weight: 600;
+        .custom-input {
+            background-color: var(--input-cream);
+            border: 1.5px solid var(--border-periwinkle);
+            border-radius: 6px;
+            color: var(--text-slate);
+            transition: box-shadow 0.2s ease, border-color 0.2s ease;
         }
 
-        .input-label {
-            font-weight: 600;
-            font-size: 0.92rem;
-            color: #212529;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
+        .custom-input:focus {
+            outline: none;
+            border-color: var(--text-slate);
+            box-shadow: 0 0 0 3px rgba(131, 150, 202, 0.28);
         }
 
-        .form-control-custom {
-            border-radius: 8px;
-            padding: 10px 14px;
-            font-size: 0.95rem;
-            border: 1px solid #ced4da;
-            margin-bottom: 16px;
+        .check-btn {
+            background-color: var(--box-aqua);
+            color: var(--text-slate);
+            border-radius: 6px;
+            transition: transform 0.12s ease, background-color 0.2s ease, box-shadow 0.2s ease;
         }
 
-        .form-control-custom:focus {
-            border-color: #0d6efd;
-            box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.15);
+        .check-btn:hover {
+            background-color: #bee0da;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 10px rgba(79, 99, 143, 0.15);
         }
 
-        .btn-check-details {
-            background-color: #198754;
-            color: #ffffff;
-            font-weight: 500;
-            font-size: 1rem;
-            width: 100%;
-            padding: 11px;
-            border: none;
-            border-radius: 8px;
-            transition: background-color 0.2s ease;
+        .check-btn:active {
+            transform: translateY(1px);
         }
 
-        .btn-check-details:hover {
-            background-color: #157347;
-            color: #ffffff;
-        }
-
-        .divider {
-            margin: 22px 0 18px 0;
-            border-top: 1px solid #dee2e6;
-        }
-
-        .result-heading {
-            color: #0d6efd;
-            font-weight: 600;
-            font-size: 1.05rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 12px;
+        .divider-line {
+            border: 0;
+            height: 2px;
+            background-color: var(--divider-tan);
         }
 
         .result-box {
-            background-color: #f4f5f7;
-            border-left: 5px solid #0d6efd;
+            background-color: var(--input-cream);
+            border: 1.5px solid var(--border-periwinkle);
             border-radius: 6px;
-            padding: 16px 18px;
-            font-size: 0.92rem;
-            line-height: 1.7;
-            color: #212529;
-            min-height: 95px;
+            color: var(--text-slate);
         }
 
-        .card-footer-custom {
-            background-color: #f8f9fa;
-            border-top: 1px solid #e9ecef;
-            text-align: center;
-            padding: 12px 20px;
-            font-size: 0.8rem;
-            color: #6c757d;
+        @keyframes fadeSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(6px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .reveal-result {
+            animation: fadeSlideIn 0.25s ease forwards;
         }
     </style>
 </head>
-<body>
+<body class="flex items-center justify-center p-4 sm:p-8">
 
-    <div class="main-card">
-        <div class="card-header-custom">
-            <h1>Non-Metal Elements</h1>
-            <p>Periodic Table Information Finder</p>
-        </div>
+    <main class="main-card w-full max-w-[660px] my-6">
+        
+        <header class="card-header py-5 px-4 text-center">
+            <h1 class="display-font text-3xl sm:text-5xl font-normal select-none leading-tight">
+                Non-Metal Elements
+            </h1>
+        </header>
 
-        <div class="card-body-custom">
-            <div class="instructions-box">
-                <strong>Instructions:</strong>
-                Enter the <b>symbol</b> of a non-metal element (Example: H, O, Cl, Ne, Xe).
+        <div class="p-5 sm:p-7">
+            
+            <section class="instructions-box px-4 py-3 mb-6">
+                <p class="display-font text-base sm:text-xl leading-snug">
+                    <span style="color: var(--text-slate);">instructions:</span>
+                    <span style="color: var(--text-periwinkle);">
+                        Enter the symbol of a non-metal element (Example: H, O, Cl, Ne, Xe).
+                    </span>
+                </p>
+            </section>
+
+            <div class="mb-5">
+                <label for="element_input" class="display-font block text-lg sm:text-xl mb-1.5" style="color: var(--text-slate);">
+                    Element Symbol
+                </label>
+                <input
+                    type="text"
+                    id="element_input"
+                    maxlength="4"
+                    autocomplete="off"
+                    placeholder="e.g. O, Cl, Ne..."
+                    class="custom-input w-full px-3.5 py-2.5 text-lg"
+                />
             </div>
 
-            <label for="elementInput" class="input-label">
-                <i class="bi bi-search"></i> Element Symbol
-            </label>
-            <input type="text" id="elementInput" class="form-control form-control-custom" placeholder="e.g., H, O, Rn">
-
-            <button type="button" class="btn btn-check-details" py-click="find_element">
-                Check Details
-            </button>
-
-            <hr class="divider">
-
-            <div class="result-heading">
-                <i class="bi bi-card-list"></i> Result
+            <div class="flex flex-col items-center my-6">
+                <button
+                    id="check_btn"
+                    type="button"
+                    class="check-btn display-font px-12 sm:px-20 py-3 text-xl sm:text-2xl cursor-pointer select-none"
+                >
+                    Check Details
+                </button>
+        
             </div>
-            <div id="result" class="result-box">
-                <span class="text-muted">Element details will appear here...</span>
-            </div>
-        </div>
 
-        <div class="card-footer-custom">
-            Skills Test &bull; 2nd Quarter 
-        </div>
-    </div>
+            <hr class="divider-line w-11/12 mx-auto my-6" />
 
-    <script type="py" src="skillstest.py"></script>
+            <section id="result_section" style="display: none;" class="reveal-result">
+                <h2 class="display-font text-lg sm:text-xl mb-1.5" style="color: var(--text-slate);">
+                    Result
+                </h2>
+                <div id="result" class="result-box p-4 sm:p-5 display-font text-base sm:text-lg leading-relaxed">
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script type="mpy" src="skillstest.py"></script>
+
 </body>
 </html>
+
